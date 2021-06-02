@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+</h:head>
+
+<h:body>
+
+	<!-- 1º Formulário é para Gravar os dados do Filme e o seu Trailer -->
+
+	<p:fieldset legend="Trailer de Filmes">
+	<br/>
+	<p:graphicImage library="images" name="cinema.jpg" width="350px" height="250px" style="display: block; margin: 10px auto;"/>
+	<br/>
+	
+	<p:panel header="Cadastro de Filmes" style="text-align: center">
+		
+		<h:form id="form1">
+			<p:panelGrid columns="2">
+				<h:outputText value="Nome : " />
+				<p:inputText value="#{mb.filme.nome}" size="50" placeholder="Entre com o Nome do Filme" required="true" requiredMessage="O necessário o preenchimento do campo Nome"/>
+				
+				
+				<h:outputText value="Gênero : " />
+				<p:inputText value="#{mb.filme.genero}" size="50" placeholder="Entre com o Genero do Filme" required="true" requiredMessage="O necessário o preenchimento do campo Gênero"/>
+				
+				
+				<h:outputText value="Descrição : " />
+				<p:inputTextarea value="#{mb.filme.descricao}" rows="5" cols="53" placeholder="Escreva uma breve Descrição do Filme" required="true" requiredMessage="O necessário o preenchimento do campo Descrição"/>
+				
+				
+				<h:outputText value="Trailer : " />
+				<p:inputText value="#{mb.filme.trailer}" size="50" placeholder="Entre com a URL do Filme" required="true" requiredMessage="O necessário o preenchimento da URL do Trailer"/>
+				
+				<p:commandButton value="Gravar" ajax="true" update=":form1, :form2" action="#{mb.gravar}" icon="ui-icon-video"></p:commandButton>
+				
+				<p:growl></p:growl>
+			
+			</p:panelGrid>
+		
+	
+		</h:form>
+
+	</p:panel>
+	</p:fieldset>
+	<br/>
+	
+	<hr></hr>
+	<br/>
+	
+	<!-- 2º Formulário é para Listar os Filmes -->
+	
+	<p:panel header="Lista de Trailer de Filmes" style="text-align: center">
+	<br/>
+		<h:form id="form2">
+			<p:dataTable value="#{mb.filmes}" var="linha" paginator="true" rows="5">
+				<p:column headerText="Nome do Filme">
+					<h:outputText value="#{linha.nome}" />
+				</p:column>
+				
+				<p:column headerText="Genero">
+					<h:outputText value="#{linha.genero}" />
+				</p:column>
+				
+				<p:column headerText="Descrição">
+					<h:outputText value="#{linha.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Trailer" style="width:500px">
+					<p:media value="#{linha.trailer}" player="flash" width="400px" height="300px" />
+				</p:column>
+				
+				<p:column headerText="Exclusão de Filme">
+					<p:commandButton value="Excluir" ajax="true" action="#{mb.excluir}" update=":form1, :form2" icon="ui-icon-trash">
+						<f:setPropertyActionListener value="#{linha}" target="#{mb.filme}"></f:setPropertyActionListener>
+					
+					</p:commandButton>
+				</p:column>
+			
+			</p:dataTable>
+		
+		</h:form>
+	
+	</p:panel>
+	
+</h:body>
+
+</html>
