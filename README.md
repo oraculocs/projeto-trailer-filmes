@@ -7,6 +7,12 @@ Projeto feito localmente.
 
 Aplicação Simples Web que Grava e Lista dados de um Trailer de Filmes. Na parte da Listagem existe um player que você pode conferir o Trailer do Filme em tempo real.
 
+<br/>
+<h2 align="center"> Funcionamento do Sistema </h2>
+
+<p align="center">
+  <img src="https://github.com/oraculocs/assets/blob/master/cinema/Projetocinema.gif" />
+
 ## Layout Web
 
 ![Web 1](https://github.com/oraculocs/assets/blob/master/cinema/gravar.JPG)
